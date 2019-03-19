@@ -1,20 +1,20 @@
-#Docs Builder
+# Docs Builder
 
-###What it does.
+### What it does.
 This tool will crawl through your project and build a collection of all written documentation (ReadMe's) from your project.
 
 From this a website is generated in the build path.
 
 
-###Install
+### Install
 clone this repo to your project.
 
 No need to run composer because the vendor is already included since it only is for parsing Markdown.
 
-###Features
+### Features
 
 
-###Usage
+### Usage
 You can generate the docs site with the following command in your terminal.
 
 ```bash
