@@ -28,6 +28,7 @@
 
 <p>This tool will crawl through your project and build a collection of all written documentation (ReadMe's) from your project.</p>
 <p>From this a website is generated in the build path.</p>
+<h3>Usage</h3>
 <p>You can generate them with the following command in your terminal.</p>
 <pre><code class="language-bash"> php collect.php</code></pre>
 <p>This will scan one directory back <code>../</code> for all
