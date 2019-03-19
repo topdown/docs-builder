@@ -12,7 +12,12 @@ clone this repo to your project.
 No need to run composer because the vendor is already included since it only is for parsing Markdown.
 
 ### Features
-
+* Live list search
+* Shows current files original path
+* Shows a list of (.md) files missing content.
+* Next and Previous with key commands `alt+right arrow or alt+left arrow `
+* Scroll to current in the navigation "Useful for large lists"
+* Document count badges for both good docs and empty docs.
 
 ### Usage
 You can generate the docs site with the following command in your terminal.
