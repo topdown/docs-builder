@@ -304,36 +304,35 @@ if ( file_exists( 'templates/scheme.json' ) ) {
 <body>
 	<section class="hero is-primary">
 		<div class="hero-body">
-			<div class="columns">
-				<div class="column is-12">
-					<div class="level">
-						<div class="level-left">
-							<div class="level-item">
-								<div class="container content">
-									<h1 class="title"><i class="is-small fas fa-code"></i> <?php echo DOCS_NAME; ?> Documentation</h1>
-								</div>
-							</div>
+			<div class="container content">
+
+				<div class="level">
+					<div class="level-left">
+						<div class="level-item">
+							<h1 class="title">
+								<i class="is-small fas fa-code"></i> <?php echo DOCS_NAME; ?> Documentation</h1>
 						</div>
+					</div>
 
-						<div class="level-right">
-							<div class="level-item">
-								<div class="control is-pulled-right">
-									<div class="tags has-addons">
-										<span class="tag is-dark">Documents</span>
-										<span class="tag is-success"><?php echo count( $scheme ); ?></span>
-									</div>
-
-									<?php if ( isset( $scheme['empty'] ) ) { ?>
-										<div class="tags has-addons">
-											<span class="tag is-dark">Empty Docs</span>
-											<span class="tag is-danger"><?php echo count( $scheme['empty'] ); ?></span>
-										</div>
-									<?php } ?>
+					<div class="level-right">
+						<div class="level-item">
+							<div class="control is-pulled-right">
+								<div class="tags has-addons">
+									<span class="tag is-dark">Documents</span>
+									<span class="tag is-success"><?php echo count( $scheme ); ?></span>
 								</div>
+
+								<?php if ( isset( $scheme['empty'] ) ) { ?>
+									<div class="tags has-addons">
+										<span class="tag is-dark">Empty Docs</span>
+										<span class="tag is-danger"><?php echo count( $scheme['empty'] ); ?></span>
+									</div>
+								<?php } ?>
 							</div>
 						</div>
 					</div>
 				</div>
+
 			</div>
 		</div>
 	</section>
