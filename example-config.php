@@ -1,0 +1,36 @@
+<?php
+
+/**
+ *
+ * PHP version 5
+ *
+ * Created: 3/19/19, 11:51 AM
+ *
+ * LICENSE:
+ *
+ * @author         Jeff Behnke <code@validwebs.com>
+ * @copyright  (c) 2019 ValidWebs.com
+ *
+ * mormvc
+ * config-example.php
+ */
+
+// These are only examples
+
+// DOCS_NAME is Required
+define( 'DOCS_NAME', 'mORvc' );
+
+// Below here is only used for generating
+define( 'DB_SKIP_PATHS', array(
+	basename( realpath( __DIR__ ) ), // This one makes sure that this generators readme is skipped.
+	'vendor',
+	'node_modules',
+	'bower_components',
+	'OLD',
+	'old',
+	'notify',
+	'indemna'
+) );
+define( 'DB_TRIM_PATH', '/Users/jeff/www/mormvc/' );
+
+// End config-example.php
