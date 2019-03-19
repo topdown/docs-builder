@@ -41,7 +41,7 @@
 				<?php
 			}
 
-			if ( isset( $scheme['empty'] ) ) { ?>
+			if ( isset( $scheme['empty'] ) && sizeof( $scheme['empty'] ) ) { ?>
 				<li><a href="?page=empty" class="is-danger"> Empty Docs
 						<span class="tag is-pulled-right"><?php echo count( $scheme['empty'] ); ?></span></a>
 				</li>
