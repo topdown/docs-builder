@@ -53,9 +53,15 @@ if ( ! is_null( $prev_key ) ) { ?>
 	<a class="previous-link" title="Previous" href="?doc=<?php echo $prev_key; ?>"><span class="previous-link"><i class="fa fa-chevron-left"></i></span></a>
 	<?php
 }
+
 if ( ! is_null( $next_key ) && $next_key !== 'empty' ) {
 	?>
 	<a class="next-link" title="Next" href="?doc=<?php echo $next_key; ?>"><span class="next-link"><i class="fa fa-chevron-right"></i></span></a>
+	<?php
+	// If we are on the last doc key go to empty if it exists.
+} elseif ( ! is_null( $next_key ) && $next_key === 'empty' ) {
+	?>
+	<a class="next-link" title="Next" href="?page=empty"><span class="next-link"><i class="fa fa-chevron-right"></i></span></a>
 	<?php
 }
 
