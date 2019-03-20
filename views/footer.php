@@ -20,33 +20,37 @@
 	<?php //include_once 'extras.php'?>
 	<hr>
 
-	<div class="columns is-mobile is-centered">
-		<div class="field is-grouped is-grouped-multiline">
-			<div class="control">
-				<div class="tags has-addons">
-					<a class="tag is-link" href="https://validwebs.com">ValidWebs</a>
-					<span class="tag is-info">&copy;<?php echo date( 'Y' ) ?></span>
-				</div>
+	<div class="container">
+
+		<nav class="level">
+			<div class="level-item has-text-centered">
+				<a class="has-text-dark" target="_blank" style="padding-right: 10px;" href="//validwebs.com">ValidWebs </a> &copy;<?php echo date( 'Y' ) ?>
 			</div>
 
-			<?php if ( isset( $scheme['empty'] ) ) { ?>
-				<div class="control is-pulled-right ">
 
+			<?php if ( isset( $scheme['empty'] ) ) { ?>
+				<div class="level-item has-text-centered">
 					<div class="tags has-addons">
 						<span class="tag is-dark">Empty Docs</span>
 						<span class="tag is-danger"><?php echo count( $scheme['empty'] ); ?></span>
 					</div>
-
 				</div>
 			<?php } ?>
 
-			<div class="control is-pulled-right ">
+			<div class="level-item has-text-centered">
 				<div class="tags has-addons">
 					<span class="tag is-dark">Documents</span>
 					<span class="tag is-success"><?php echo count( $scheme ); ?></span>
 				</div>
 			</div>
-		</div>
+
+
+			<div class="level-item has-text-centered">
+				<a title="GitHub Repository" target="_blank" class="has-text-dark" href="//github.com/topdown/docs-builder"><i class="fab fa-github fa-2x"></i></a>
+			</div>
+
+		</nav>
+
 	</div>
 
 </footer>
