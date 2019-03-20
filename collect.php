@@ -11,8 +11,8 @@
  * @author         Jeff Behnke <code@validwebs.com>
  * @copyright  (c) 2019 ValidWebs.com
  *
- * mormvc
- * docs.php
+ *
+ * collect.php
  */
 
 // Only command line
@@ -39,13 +39,6 @@ if ( php_sapi_name() == 'cli' ) {
 		die( 'Please create it and chmod to 777' );
 	}
 
-//	$arguments = cli_args_parser( $argv );
-//
-//	if ( ! isset( $arguments['arguments']['name'] ) ) {
-//		fwrite( STDERR, '[ ERROR ]: You must provie a name Eg. name="My Name"' . "\n" );
-//		die();
-//	} else {
-		//$name      = $arguments['arguments']['name'];
 		$name      = DOCS_NAME;
 		$slug      = cli_clean_slug( $name );
 		$full_path = $build_path . '/' . $slug;
@@ -64,10 +57,6 @@ if ( php_sapi_name() == 'cli' ) {
 
 		fwrite( STDOUT, "Build Path: $full_path/ \n\n" );
 
-//		if ( in_array( 'debug', $arguments['commands'] ) ) {
-//			print_r( $arguments );
-//		}
-
 		cli_lines( 'Collection Starting' );
 
 		cli_generate_docs( true );
@@ -81,68 +70,8 @@ if ( php_sapi_name() == 'cli' ) {
 
 		cli_lines( 'Generation Completed.' );
 		exit;
-	//}
-
-	//	if ( ! sizeof( $arguments['commands'] ) && ! sizeof( $arguments['arguments'] ) && ! sizeof( $arguments['options'] ) ) {
-	//		fwrite( STDOUT, "For help use -h or help\n" );
-	//	}
-
-
-	// Example for multiple command parsing
-	/*foreach ( $arguments['commands'] as $command ) {
-
-		switch ( $command ) {
-
-			case 'help':
-				help();
-			break;
-
-			case 'debug':
-				// Used in the start.
-			break;
-
-			case 'gen':
-			case 'generate':
-
-
-				if ( in_array( 'h', $arguments['flags'] ) || in_array( '--help', $arguments['options'] ) ) {
-
-					// specific help
-				} else {
-
-				}
-
-			break;
-
-
-			break;
-		}
-	}*/
-
-
-	//	if ( ! is_dir( 'build' ) ) {
-	//		shell_exec( "mkdir build" );
-	//		shell_exec( "chmod 777 build" );
-	//
-	//		if ( ! is_dir( 'build/templates' ) ) {
-	//			shell_exec( "mkdir build/templates" );
-	//			shell_exec( "chmod 777 build/templates" );
-	//		}
-	//	} else {
-	//
-	//		if ( ! is_dir( 'build/templates' ) ) {
-	//			shell_exec( "mkdir build/templates" );
-	//			shell_exec( "chmod 777 build/templates" );
-	//		} else {
-	//			shell_exec( "rm -R build/templates/*" );
-	//			shell_exec( "touch build/index.php" );
-	//			shell_exec( "touch build/templates/index.php" );
-	//
-	//		}
-	//	}
-
 
 } else {
 	die( 'This is a command line tool only.<br />Please to the provided documentation on the home page.' );
 }
-// End docs.php
+// End collect.php
