@@ -20,6 +20,10 @@
 // DOCS_NAME is Required
 define( 'DOCS_NAME', 'mORvc' );
 
+// Each crawl will look for an src directory to copy over to the document templates.
+// This "should" load images properly that were included in the repo.
+define('SRC_DIR', 'src');
+
 // Below here is only used for generating
 define( 'DB_SKIP_PATHS', array(
 	// The following line makes sure that this generators readme is skipped.

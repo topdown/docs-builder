@@ -18,8 +18,8 @@
 /**
  * Load the scheme file so the system can process pages and data.
  */
-if ( file_exists( 'templates/scheme.json' ) ) {
-	$scheme = file_get_contents( 'templates/scheme.json' );
+if ( file_exists( 'scheme.json' ) ) {
+	$scheme = file_get_contents( 'scheme.json' );
 	$scheme = json_decode( $scheme, true );
 	$active = '';
 	if ( isset( $_REQUEST['doc'] ) && ! empty( strip_tags( $_REQUEST['doc'] ) ) ) {
@@ -28,6 +28,41 @@ if ( file_exists( 'templates/scheme.json' ) ) {
 } else {
 	$scheme = array();
 }
+
+$directory = '';
+$url       = ( isset( $_SERVER['HTTPS'] ) && $_SERVER['HTTPS'] === 'on' ? "https" : "http" ) . '://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
+
+
+if ( isset( $_REQUEST['doc'] ) && ! empty( strip_tags( $_REQUEST['doc'] ) ) ) {
+
+	$requested_key = strip_tags( $_REQUEST['doc'] );
+	$doc_array     = ( isset( $scheme[ $requested_key ] ) ) ? $scheme[ $requested_key ] : null;
+
+	if ( ! is_null( $doc_array ) ) {
+		$file_slug = $doc_array['slug'];
+		$file_name = $doc_array['file_name'];
+		$directory = $doc_array['directory'];
+		$file      = "templates/{$directory}/{$file_name}.php";
+	} else {
+		die( 'Null doc array in scheme.' );
+	}
+
+} elseif ( isset( $_REQUEST['page'] ) && ! empty( strip_tags( $_REQUEST['page'] ) ) ) {
+	$page      = strip_tags( $_REQUEST['page'] );
+	$file      = "views/{$page}.php";
+	$file_name = ucwords( $page );
+} else {
+	$file      = 'views/home.php';
+	$file_name = '';
+}
+
+// Next and Previous navigations
+if ( isset( $_REQUEST['doc'] ) ) {
+	$key = $_REQUEST['doc'];
+} else {
+	$key = '';
+}
+
 ?>
 	<!DOCTYPE html>
 	<html lang="en">
@@ -225,22 +260,42 @@ if ( file_exists( 'templates/scheme.json' ) ) {
 				}, 500 );
 			} );
 
+			var body = $( '.body-content' );
+			// Fix image paths.
+			body.find( 'img' ).each( function () {
+
+				if ( location.hostname === this.hostname || !this.hostname.length ) {
+					var old_src = $( this ).attr( 'src' );
+					if ( old_src !== undefined ) {
+
+						$( this ).attr( 'src', 'templates/<?php echo $directory; ?>/' + old_src );
+
+						var new_src = $( this ).attr( 'src' );
+
+						console.log( old_src, new_src );
+					}
+				}
+			} );
+
 			// Replace links with something we can use.
-			$( '.body-content' ).find( 'a' ).each( function () {
+			body.find( 'a' ).each( function () {
 
 				if ( location.hostname === this.hostname || !this.hostname.length ) {
 
-					var old_ref = $( this ).attr( 'href' ),
-					    slug    = old_ref.split( '/' ).join( '_' ).replace( /\.[^/.]+$/, "" );
+					var old_ref = $( this ).attr( 'href' );
 
-					// Only change if its a local .md file link.
-					if ( old_ref.indexOf( '.md' ) !== -1 ) {
-						$( this ).attr( 'href', '?doc=' + slug );
+					if ( old_ref !== undefined ) {
+						var slug = old_ref.split( '/' ).join( '_' ).replace( /\.[^/.]+$/, "" );
+
+						// Only change if its a local .md file link.
+						if ( old_ref.indexOf( '.md' ) !== -1 ) {
+							$( this ).attr( 'href', '?doc=' + slug );
+						}
+
+						var new_ref = $( this ).attr( 'href' );
+
+						console.log( old_ref, new_ref );
 					}
-
-					var new_ref = $( this ).attr( 'href' );
-
-					console.log( old_ref, new_ref );
 				}
 			} );
 

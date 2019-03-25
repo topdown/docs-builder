@@ -15,28 +15,6 @@
  * body.php
  */
 
-$url = ( isset( $_SERVER['HTTPS'] ) && $_SERVER['HTTPS'] === 'on' ? "https" : "http" ) . '://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
-
-if ( isset( $_REQUEST['doc'] ) && ! empty( strip_tags( $_REQUEST['doc'] ) ) ) {
-	$file_name = strip_tags( $_REQUEST['doc'] );
-	$file      = "templates/{$file_name}.php";
-
-} elseif ( isset( $_REQUEST['page'] ) && ! empty( strip_tags( $_REQUEST['page'] ) ) ) {
-	$page      = strip_tags( $_REQUEST['page'] );
-	$file      = "views/{$page}.php";
-	$file_name = ucwords( $page );
-} else {
-	$file      = 'views/home.php';
-	$file_name = '';
-}
-
-// Next and Previous navigations
-if ( isset( $_REQUEST['doc'] ) ) {
-	$key = $_REQUEST['doc'];
-} else {
-	$key = '';
-}
-
 $keys = array_keys( $scheme );
 $i    = array_search( $key, $keys );
 
@@ -93,7 +71,7 @@ if ( empty( $title ) ) {
 			</div>
 		</div>
 
-		<?php if ( isset( $scheme[ $file_name ] ) && isset( $scheme[ $file_name ]['path'] ) ) { ?>
+		<?php if ( isset( $scheme[ $file_slug ] ) && isset( $scheme[ $file_slug ]['origin'] ) ) { ?>
 			<div class="box">
 				<div class="level">
 					<div class="level-left">
@@ -101,7 +79,7 @@ if ( empty( $title ) ) {
 							<div class="control">
 								<div class="tags has-addons">
 									<span class="tag is-dark">Path </span>
-									<span class="tag is-info"><?php echo $scheme[ $file_name ]['path'] ?></span>
+									<span class="tag is-info"><?php echo $scheme[ $file_slug ]['origin'] ?></span>
 								</div>
 							</div>
 						</div>
@@ -111,7 +89,7 @@ if ( empty( $title ) ) {
 							<div class="control is-pulled-right ">
 								<div class="tags has-addons">
 									<span class="tag is-dark">Size </span>
-									<span class="tag is-info"><?php echo $scheme[ $file_name ]['size'] ?></span>
+									<span class="tag is-info"><?php echo $scheme[ $file_slug ]['size'] ?></span>
 								</div>
 							</div>
 						</div>
@@ -123,6 +101,7 @@ if ( empty( $title ) ) {
 		<div class="box body-content">
 
 			<?php
+			
 			if ( file_exists( $file ) ) {
 				include_once $file;
 			} else {

@@ -255,25 +255,24 @@ function cli_nl() {
  * Created:    3/19/19, 2:25 PM
  *
  * @param bool $save
+ *
+ * @throws Exception
  */
 function cli_generate_docs( $save = false ) {
 	$path    = realpath( '../' );
 	$files   = array();
 	$results = cli_rsearch( $path, array( 'md', 'rst' ) );
 	//pretty_dump( $results );
-
-
-	//echo "\n";
+	$templates_path = DB_BUILD_PATH . '/templates/';
 
 	if ( count( $results ) > 0 ) {
+
+		// Parsers
 		$Parsedown = new ParsedownExtra();
+		//$rst_parser = new Gregwar\RST\Parser;
+		//$rst_parser->getEnvironment()->getErrorManager()->abortOnError( false );
 
-		//echo "\n\n";
-		//$tbl = new \Console_Table();
-		//		$tbl->setHeaders(
-		//			array( 'N', 'Path', 'Slug - $build_path/{slug}.php', 'Size' )
-		//		);
-
+		// Setup
 		$empty_info = array();
 		$empty_rows = array();
 		$info       = array();
@@ -282,20 +281,53 @@ function cli_generate_docs( $save = false ) {
 
 		foreach ( $results as $key => $file_path ) {
 
-			$bsize = filesize( $file_path );
+			$bsize        = filesize( $file_path );
+			$file_info    = pathinfo( $file_path );
+			$extension    = ( isset( $file_info['extension'] ) ) ? $file_info['extension'] : null;
+			$file_name    = ( isset( $file_info['basename'] ) ) ? $file_info['basename'] : null;
+			$directory    = ( isset( $file_info['dirname'] ) ) ? $file_info['dirname'] : null;
+			$original_dir = ( isset( $file_info['dirname'] ) ) ? $file_info['dirname'] : null;
+
+			if ( ! is_null( $directory ) ) {
+				$directory = str_replace( DB_TRIM_PATH, '', rtrim( $directory, '/' ) );
+			}
+
+			// Create the directories.
+			if ( ! is_dir( $templates_path . $directory ) ) {
+				shell_exec( 'mkdir -p ' . $templates_path . $directory );
+			}
+
+			if ( defined( 'SRC_DIR' ) ) {
+
+				if ( is_dir( $original_dir . '/' . SRC_DIR ) ) {
+
+					$old = $original_dir . '/' . SRC_DIR;
+					$new = $templates_path . $directory . '/' . SRC_DIR;
+
+					if ( ! is_dir( $new ) ) {
+						shell_exec( 'mkdir -p ' . $new . '/' );
+					}
+
+					shell_exec( 'cp -a ' . $old . '/. ' . $new );
+				}
+			}
+
 			// Fix file path for text and linking
-			$file_path = str_replace( '../../', '', $file_path );
-			$path      = str_replace( DB_TRIM_PATH, '', rtrim( $key, '/' ) );
-			$slug      = str_replace( array( '/', '.md' ), array( '_', '' ), $path );
-			$name      = trim( ucwords( strtolower( str_replace( '_', ' ', $slug ) ) ) );
-			$name      = trim( str_replace( '.md', '', $name ) );
-			$slug      = trim( strtolower( $slug ) );
+			//$file_path = str_replace( '../../', '', $file_path );
+			$path = str_replace( DB_TRIM_PATH, '', rtrim( $key, '/' ) );
+			$slug = str_replace( array( '/', '.md', '.rst' ), array( '_', '' ), $path );
+			$name = trim( ucwords( strtolower( str_replace( '_', ' ', $slug ) ) ) );
+			$name = trim( str_replace( array( '.md', '.rst' ), '', $name ) );
+			$slug = trim( strtolower( $slug ) );
 
 			if ( $bsize !== 0 ) {
 
-				$info[ $slug ]['path'] = trim( $key );
-				$info[ $slug ]['slug'] = $slug;
-				$info[ $slug ]['name'] = $name;
+				$info[ $slug ]['origin']    = trim( $key );
+				$info[ $slug ]['directory'] = $directory;
+				$info[ $slug ]['file_name'] = $file_name;
+				$info[ $slug ]['extension'] = $extension;
+				$info[ $slug ]['slug']      = $slug;
+				$info[ $slug ]['name']      = $name;
 
 				$size                  = cli_human_filesize( $bsize );
 				$info[ $slug ]['size'] = $size;
@@ -304,25 +336,36 @@ function cli_generate_docs( $save = false ) {
 
 				if ( $save === true ) {
 
-					$markdown = file_get_contents( $file_path );
+					$html     = '';
+					$contents = file_get_contents( $file_path );
 
-					$html = $Parsedown->text( $markdown );
+					switch ( $extension ) {
+						case'md':
+							$html = $Parsedown->text( $contents );
+						break;
+						case 'rst':
+							$html = $Parsedown->text( $contents );
 
-					file_put_contents( DB_BUILD_PATH . '/templates/' . strtolower( $slug ) . '.php', $html );
+							//$html = $rst_parser->parse( $contents );
+						break;
+					}
+
+
+					file_put_contents( DB_BUILD_PATH . '/templates/' . $directory . '/' . $file_name . '.php', $html );
 				}
 			} else {
-				$empty_info[ $slug ]['path'] = trim( $key );
-				$empty_info[ $slug ]['slug'] = $slug;
-				$empty_info[ $slug ]['name'] = $name;
+				$empty_info[ $slug ]['origin'] = trim( $key );
+				$empty_info[ $slug ]['slug']   = $slug;
+				$empty_info[ $slug ]['name']   = $name;
 
 				$empty_rows[] = array( $e ++, $key, $slug, '0.0B' );
 			}
 		}
 
 		if ( sizeof( $info ) ) {
-			cli_lines( 'Processed (.md) files.' );
+			cli_lines( 'Processed files.' );
 			foreach ( $info as $item ) {
-				echo '+ ' . $item['path'] . "\n";
+				echo '+ ' . $item['origin'] . "\n";
 			}
 		}
 
@@ -333,11 +376,11 @@ function cli_generate_docs( $save = false ) {
 			//$tbl->addRow( array( '', 'EMPTY FILES', 'EMPTY FILES', '' ) );
 			//$tbl->addSeparator();
 
-			cli_lines( 'Empty (.md) files.' );
+			cli_lines( 'Empty files.' );
 
 			foreach ( $empty_info as $empty ) {
 				//$tbl->addRow( $empty_row );
-				echo $empty['path'] . "\n";
+				echo $empty['origin'] . "\n";
 			}
 		}
 
@@ -346,7 +389,7 @@ function cli_generate_docs( $save = false ) {
 
 		if ( $save === true ) {
 			$info = $info + array( 'empty' => $empty_info );
-			file_put_contents( DB_BUILD_PATH . '/templates/scheme.json', json_encode( $info ) );
+			file_put_contents( DB_BUILD_PATH . '/scheme.json', json_encode( $info ) );
 		}
 		//echo "\n\n";
 	}
