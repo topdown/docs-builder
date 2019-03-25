@@ -25,7 +25,6 @@ if ( php_sapi_name() == 'cli' ) {
 	}
 
 	include_once 'functions.php';
-
 	include_once 'vendor/autoload.php';
 
 	echo "\nRunning setup/cleanup.\n";
@@ -39,37 +38,32 @@ if ( php_sapi_name() == 'cli' ) {
 		die( 'Please create it and chmod to 777' );
 	}
 
-		$name      = DOCS_NAME;
-		$slug      = cli_clean_slug( $name );
-		$full_path = $build_path . '/' . $slug;
+	$name      = DOCS_NAME;
+	$slug      = cli_clean_slug( $name );
+	$full_path = $build_path . '/' . $slug;
 
-		// We can't use the function because it will create and index that cp can't overwrite later.
-		if(! is_dir($full_path)) {
-			shell_exec("mkdir $full_path");
-		}
+	// We can't use the function because it will create and index that cp can't overwrite later.
+	if ( ! is_dir( $full_path ) ) {
+		shell_exec( "mkdir $full_path" );
+	}
 
-		cli_create_dir( $full_path . '/templates' );
-		cli_create_dir( $full_path . '/views' );
-		cli_create_dir( $full_path . '/src' );
-		//cli_create_dir( $full_path . '/vendor' );
+	cli_create_dir( $full_path . '/templates' );
+	cli_create_dir( $full_path . '/views' );
+	cli_create_dir( $full_path . '/src' );
 
-		define( 'DB_BUILD_PATH', $full_path );
+	define( 'DB_BUILD_PATH', $full_path );
 
-		fwrite( STDOUT, "Build Path: $full_path/ \n\n" );
+	fwrite( STDOUT, "Build Path: $full_path/ \n\n" );
+	cli_lines( 'Collection Starting' );
+	cli_generate_docs( true );
+	cli_lines( 'Copying required files to build path.' );
+	shell_exec( "cp -a views/. $full_path/views/" );
+	shell_exec( "cp -a src/. $full_path/src/" );
+	shell_exec( "cp index.php $full_path/index.php" );
+	shell_exec( "cp config.php $full_path/config.php" );
+	cli_lines( 'Generation Completed.' );
 
-		cli_lines( 'Collection Starting' );
-
-		cli_generate_docs( true );
-
-		cli_lines( 'Copying required files to build path.' );
-		shell_exec( "cp -a views/. $full_path/views/" );
-		shell_exec( "cp -a src/. $full_path/src/" );
-		//shell_exec( "cp -a vendor/. $full_path/vendor/" );
-		shell_exec( "cp index.php $full_path/index.php" );
-		shell_exec( "cp config.php $full_path/config.php" );
-
-		cli_lines( 'Generation Completed.' );
-		exit;
+	exit;
 
 } else {
 	die( 'This is a command line tool only.<br />Please to the provided documentation on the home page.' );

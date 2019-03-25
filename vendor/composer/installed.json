@@ -92,5 +92,51 @@
             "parsedown",
             "parser"
         ]
+    },
+    {
+        "name": "gregwar/rst",
+        "version": "v1.0.5",
+        "version_normalized": "1.0.5.0",
+        "target-dir": "Gregwar/RST",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/Gregwar/RST.git",
+            "reference": "c839bf7ee0c8c19592e2ecaffddbb01df063088f"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/Gregwar/RST/zipball/c839bf7ee0c8c19592e2ecaffddbb01df063088f",
+            "reference": "c839bf7ee0c8c19592e2ecaffddbb01df063088f",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.3.0"
+        },
+        "time": "2018-08-06T09:38:17+00:00",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-0": {
+                "Gregwar\\RST": ""
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Grégoire Passault",
+                "email": "g.passault@gmail.com",
+                "homepage": "http://www.gregwar.com/"
+            }
+        ],
+        "description": "PHP library to parse reStructuredText documents",
+        "homepage": "https://github.com/Gregwar/RST",
+        "keywords": [
+            "markup",
+            "parser",
+            "rst"
+        ]
     }
 ]

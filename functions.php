@@ -259,7 +259,7 @@ function cli_nl() {
 function cli_generate_docs( $save = false ) {
 	$path    = realpath( '../' );
 	$files   = array();
-	$results = cli_rsearch( $path, array( 'md' ) );
+	$results = cli_rsearch( $path, array( 'md', 'rst' ) );
 	//pretty_dump( $results );
 
 
