@@ -15,36 +15,19 @@
  * body.php
  */
 
-$url = ( isset( $_SERVER['HTTPS'] ) && $_SERVER['HTTPS'] === 'on' ? "https" : "http" ) . '://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
-
-if ( isset( $_REQUEST['doc'] ) && ! empty( strip_tags( $_REQUEST['doc'] ) ) ) {
-	$file_name = strip_tags( $_REQUEST['doc'] );
-	$file      = "templates/{$file_name}.php";
-
-} elseif ( isset( $_REQUEST['page'] ) && ! empty( strip_tags( $_REQUEST['page'] ) ) ) {
-	$page      = strip_tags( $_REQUEST['page'] );
-	$file      = "views/{$page}.php";
-	$file_name = ucwords( $page );
-} else {
-	$file_name = '';
-
-	if ( empty( $file ) && isset( $scheme['home'] ) ) {
-		$file      = 'templates/home.php';
-		$file_name = 'Home';
-	} else {
-		$file = 'views/home.php';
-	}
-}
-
-// Next and Previous navigations
-if ( isset( $_REQUEST['doc'] ) ) {
-	$key = $_REQUEST['doc'];
-} else {
-	$key = '';
-}
-
 $keys = array_keys( $scheme );
 $i    = array_search( $key, $keys );
+
+$home = array_keys( $keys, 'home' );
+
+if ( in_array( 'home', $keys ) ) {
+	if ( isset( $home[0] ) ) {
+		// Remove the home slug.
+		unset( $keys[ $home[0] ] );
+		// Renumber the array
+		$keys = array_values( $keys );
+	}
+}
 
 // If we are on home we need the first key.
 if ( empty( $key ) ) {
