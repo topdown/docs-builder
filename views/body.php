@@ -99,7 +99,7 @@ if ( empty( $title ) ) {
 			</div>
 		</div>
 
-		<?php if ( isset( $scheme[ $file_name ] ) && isset( $scheme[ $file_name ]['path'] ) ) { ?>
+		<?php if ( isset( $scheme[ $file_slug ] ) && isset( $scheme[ $file_slug ]['origin'] ) ) { ?>
 			<div class="box">
 				<div class="level">
 					<div class="level-left">
@@ -107,7 +107,7 @@ if ( empty( $title ) ) {
 							<div class="control">
 								<div class="tags has-addons">
 									<span class="tag is-dark">Path </span>
-									<span class="tag is-info"><?php echo $scheme[ $file_name ]['path'] ?></span>
+									<span class="tag is-info"><?php echo $scheme[ $file_slug ]['origin'] ?></span>
 								</div>
 							</div>
 						</div>
@@ -117,7 +117,7 @@ if ( empty( $title ) ) {
 							<div class="control is-pulled-right ">
 								<div class="tags has-addons">
 									<span class="tag is-dark">Size </span>
-									<span class="tag is-info"><?php echo $scheme[ $file_name ]['size'] ?></span>
+									<span class="tag is-info"><?php echo $scheme[ $file_slug ]['size'] ?></span>
 								</div>
 							</div>
 						</div>

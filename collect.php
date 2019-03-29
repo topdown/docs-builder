@@ -55,7 +55,11 @@ if ( php_sapi_name() == 'cli' ) {
 
 	fwrite( STDOUT, "Build Path: $full_path/ \n\n" );
 	cli_lines( 'Collection Starting' );
-	cli_generate_docs( true );
+	try {
+		cli_generate_docs( true );
+	} catch ( Exception $e ) {
+	}
+
 	cli_lines( 'Copying required files to build path.' );
 	shell_exec( "cp -a views/. $full_path/views/" );
 	shell_exec( "cp -a src/. $full_path/src/" );

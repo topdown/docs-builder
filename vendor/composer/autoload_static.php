@@ -18,6 +18,13 @@ class ComposerStaticInitf0fb004957e3ac235257c1b3cdeae414
                 0 => __DIR__ . '/..' . '/erusev/parsedown',
             ),
         ),
+        'G' => 
+        array (
+            'Gregwar\\RST' => 
+            array (
+                0 => __DIR__ . '/..' . '/gregwar/rst',
+            ),
+        ),
     );
 
     public static function getInitializer(ClassLoader $loader)
