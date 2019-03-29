@@ -161,6 +161,17 @@ if ( file_exists( 'templates/scheme.json' ) ) {
 				margin-left: 10px;
 			}
 
+			.help-link {
+				position: absolute;
+				top:      15px;
+				right:    15px;
+				color:    #fff;
+			}
+
+			a.help-link:hover {
+				color: #000 !important;
+			}
+
 		</style>
 
 		<script type="text/javascript" src="src/jquery.js"></script>
@@ -303,6 +314,7 @@ if ( file_exists( 'templates/scheme.json' ) ) {
 	</head>
 <body>
 	<section class="hero is-primary">
+		<a class="help-link" title="Help" href="?page=help"><i class="fa fa-question-circle fa-2x"></i></a>
 		<div class="hero-body">
 			<div class="container content">
 

@@ -22,7 +22,8 @@ define( 'DOCS_NAME', 'mORvc' );
 
 // Below here is only used for generating
 define( 'DB_SKIP_PATHS', array(
-	basename( realpath( __DIR__ ) ), // This one makes sure that this generators readme is skipped.
+	// The following line makes sure that this generators readme is skipped.
+	basename( realpath( __DIR__ ) ),
 	'vendor',
 	'node_modules',
 	'bower_components',

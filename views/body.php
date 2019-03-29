@@ -26,8 +26,14 @@ if ( isset( $_REQUEST['doc'] ) && ! empty( strip_tags( $_REQUEST['doc'] ) ) ) {
 	$file      = "views/{$page}.php";
 	$file_name = ucwords( $page );
 } else {
-	$file      = 'views/home.php';
 	$file_name = '';
+
+	if ( empty( $file ) && isset( $scheme['home'] ) ) {
+		$file      = 'templates/home.php';
+		$file_name = 'Home';
+	} else {
+		$file = 'views/home.php';
+	}
 }
 
 // Next and Previous navigations

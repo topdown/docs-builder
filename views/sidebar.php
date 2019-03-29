@@ -51,7 +51,7 @@
 			if ( sizeof( $scheme ) ) {
 
 				foreach ( (array) $scheme as $item ) {
-					if ( isset( $item['slug'] ) ) {
+					if ( isset( $item['slug'] ) && $item['slug'] !== 'home' ) {
 						if ( $active === $item['slug'] ) {
 							echo '<li><a id="' . $item['slug'] . '" href="?doc=' . $item['slug'] . '" class="is-active">' . $item['name'] . '</a></li>';
 						} else {
