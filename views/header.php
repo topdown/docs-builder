@@ -56,7 +56,10 @@ if ( isset( $_REQUEST['doc'] ) && ! empty( strip_tags( $_REQUEST['doc'] ) ) ) {
 } else {
 
 	if ( empty( $file ) && isset( $scheme['home'] ) ) {
-		$file      = 'templates/home.php';
+		$file_slug = $scheme['home']['slug'];
+		$file_name = $scheme['home']['file_name'];
+		$directory = $scheme['home']['directory'];
+		$file      = "templates/{$directory}/{$file_name}.php";
 		$file_name = 'Home';
 		$file_slug = 'home';
 	} else {

@@ -70,7 +70,7 @@ if ( empty( $title ) ) {
 			<div class="level-left">
 				<div class="level-item">
 					<h3 class="title is-3">
-						<i class="is-small fas fa-code"></i> <?php echo $title; ?>
+						<i class="is-small fas fa-code"></i> <?php echo db_page_title( $title ); ?>
 					</h3>
 				</div>
 			</div>

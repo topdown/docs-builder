@@ -53,9 +53,9 @@
 				foreach ( (array) $scheme as $item ) {
 					if ( isset( $item['slug'] ) && $item['slug'] !== 'home' ) {
 						if ( $active === $item['slug'] ) {
-							echo '<li><a id="' . $item['slug'] . '" href="?doc=' . $item['slug'] . '" class="is-active">' . $item['name'] . '</a></li>';
+							echo '<li><a id="' . $item['slug'] . '" href="?doc=' . $item['slug'] . '" class="is-active">' . db_page_title($item['name']) . '</a></li>';
 						} else {
-							echo '<li><a id="' . $item['slug'] . '" href="?doc=' . $item['slug'] . '" >' . $item['name'] . '</a></li>';
+							echo '<li><a id="' . $item['slug'] . '" href="?doc=' . $item['slug'] . '" >' . db_page_title($item['name']) . '</a></li>';
 						}
 					}
 				}
