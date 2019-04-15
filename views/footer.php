@@ -24,7 +24,7 @@
 
 		<nav class="level">
 			<div class="level-item has-text-centered">
-				<a class="has-text-dark" target="_blank" style="padding-right: 10px;" href="//validwebs.com">ValidWebs </a> &copy;<?php echo date( 'Y' ) ?>
+				&copy;<?php echo date( 'Y' ) ?> &nbsp; <a class="has-text-dark" target="_blank" style="padding-right: 10px;" href="//validwebs.com">ValidWebs </a>
 			</div>
 
 

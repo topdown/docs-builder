@@ -66,7 +66,7 @@ if ( empty( $title ) ) {
 
 <div class="column is-9">
 	<div class="content is-medium body-content-container">
-		<div class="level">
+		<div class="level title-block">
 			<div class="level-left">
 				<div class="level-item">
 					<h3 class="title is-3">
@@ -83,7 +83,7 @@ if ( empty( $title ) ) {
 		</div>
 
 		<?php if ( isset( $scheme[ $file_slug ] ) && isset( $scheme[ $file_slug ]['origin'] ) ) { ?>
-			<div class="box">
+			<div class="box file-info-block">
 				<div class="level">
 					<div class="level-left">
 						<div class="level-item">

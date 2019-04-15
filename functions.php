@@ -182,7 +182,7 @@ function cli_args_parser( $args ) {
 
 function cli_help() {
 	echo '
-Usage: php collect.php [command] [options] [-f] <file> [--] [args...]
+Usage: php build.php [command] [options] [-f] <file> [--] [args...]
    php cli.php find -h
    php cli.php debug "Is used as a appended command and outputs all args."
    php cli.php gen OR generate -h
