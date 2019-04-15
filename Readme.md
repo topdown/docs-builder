@@ -23,7 +23,7 @@ No need to run composer because the vendor is already included since it only is 
 You can generate the docs site with the following command in your terminal.
 
 ```bash
- php collect.php
+ php build.php
 ```
 
 This will scan one directory back `../` for all __.md__ files and generate templates to load via the package that is output in the build path.

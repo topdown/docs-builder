@@ -30,7 +30,7 @@
 <p>From this a website is generated in the build path.</p>
 <h3>Usage</h3>
 <p>You can generate them with the following command in your terminal.</p>
-<pre><code class="language-bash"> php collect.php</code></pre>
+<pre><code class="language-bash"> php build.php</code></pre>
 <p>This will scan one directory back <code>../</code> for all
 	<strong>.md</strong> files and generate templates to load via the package that is output in the build path.</p>
 <p>The build path will be <code>build/{slug}/</code> and {slug} is generated from your config.php <code>DOCS_NAME</code>.

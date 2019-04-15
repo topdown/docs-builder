@@ -12,7 +12,7 @@
  * @copyright  (c) 2019 ValidWebs.com
  *
  *
- * collect.php
+ * build.php
  */
 
 // Only command line
@@ -72,4 +72,4 @@ if ( php_sapi_name() == 'cli' ) {
 } else {
 	die( 'This is a command line tool only.<br />Please to the provided documentation on the home page.' );
 }
-// End collect.php
+// End build.php
