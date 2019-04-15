@@ -55,13 +55,13 @@ function db_page_title( $title ) {
 
 		foreach ( STRIP_FROM_TITLES as $str ) {
 			// Don't strip if the only text is Readme
-			if ( strtolower($title) !== 'readme' ) {
+			if ( strtolower( $title ) !== 'readme.md' && strtolower( $title ) !== 'readme' ) {
 				$title = str_replace( $str, '', $title );
 			}
 		}
 	}
 
-	return $title;
+	return str_replace(array('.md', '.MD'), '', $title);
 }
 
 // End config-example.php
