@@ -268,7 +268,7 @@ function cli_generate_docs( $save = false ) {
 	if ( count( $results ) > 0 ) {
 
 		// Parsers
-		$Parsedown = new ParsedownExtra();
+		$Parsedown = new markdown_parser();
 		//$rst_parser = new Gregwar\RST\Parser;
 		//$rst_parser->getEnvironment()->getErrorManager()->abortOnError( false );
 
