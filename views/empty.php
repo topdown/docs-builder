@@ -28,8 +28,8 @@ if ( isset( $scheme['empty'] ) && sizeof( $scheme['empty'] ) ) {
 	echo '<ol>';
 	foreach ( $scheme['empty'] as $slug => $item ) {
 
-		if(isset($item['path'])) {
-			echo '<li>' . $item['path'] . '</li>';
+		if ( isset( $item['origin'] ) ) {
+			echo '<li>' . $item['origin'] . '</li>';
 		} else {
 			// This should not happen.
 			echo '<li>Missing Path</li>';

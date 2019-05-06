@@ -354,9 +354,12 @@ function cli_generate_docs( $save = false ) {
 					file_put_contents( DB_BUILD_PATH . '/templates/' . $directory . '/' . $file_name . '.php', $html );
 				}
 			} else {
-				$empty_info[ $slug ]['origin'] = trim( $key );
-				$empty_info[ $slug ]['slug']   = $slug;
-				$empty_info[ $slug ]['name']   = $name;
+				$empty_info[ $slug ]['origin']    = trim( $key );
+				$empty_info[ $slug ]['directory'] = $directory;
+				$empty_info[ $slug ]['file_name'] = $file_name;
+				$empty_info[ $slug ]['extension'] = $extension;
+				$empty_info[ $slug ]['slug']      = $slug;
+				$empty_info[ $slug ]['name']      = $name;
 
 				$empty_rows[] = array( $e ++, $key, $slug, '0.0B' );
 			}
