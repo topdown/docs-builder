@@ -54,7 +54,7 @@
 	</div>
 
 </footer>
-<script src='src/prism.js'></script>
+<script src='src/js/prism.js'></script>
 <script>
   window.addEventListener( 'resize', () => {
 	  const divs = document.querySelectorAll( ".menu-list" );

@@ -83,11 +83,11 @@ if ( isset( $_REQUEST['doc'] ) ) {
 	<meta charset="UTF-8">
 	<title><?php echo DOCS_NAME; ?> Documentation</title>
 	<link rel="icon" type="image/png" sizes="32x32" href="src/favicon.png">
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
-	<link rel='stylesheet' href='https://unpkg.com/bulma@0.7.4/css/bulma.min.css'>
-	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
-	<link rel='stylesheet' href="src/prism.css">
-	<link rel="stylesheet" href="src/cheatsheet.css">
+	<link rel="stylesheet" href="src/css/normalize.min.css">
+	<link rel='stylesheet' href='src/css/bulma.min.css'>
+	<link rel="stylesheet" href="src/css/fa-all.css">
+	<link rel='stylesheet' href="src/css/prism.css">
+	<link rel="stylesheet" href="src/css/cheatsheet.css">
 	<style type="text/css">
 		.menu-label:not(:last-child) {
 			margin-left:   10px;
@@ -368,7 +368,7 @@ if ( isset( $_REQUEST['doc'] ) ) {
 
 	</style>
 
-	<script type="text/javascript" src="src/jquery.js"></script>
+	<script type="text/javascript" src="src/js/jquery.js"></script>
 
 	<script type="text/javascript">
 
