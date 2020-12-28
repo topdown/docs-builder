@@ -2,17 +2,19 @@
 
 /**
  *
- * PHP version 5
+ * PHP version 7.
  *
- * Created: 3/18/19, 12:42 PM
+ * Created: 2019-03-29, 14:40
  *
  * LICENSE:
  *
  * @author         Jeff Behnke <code@validwebs.com>
- * @copyright  (c) 2019 ValidWebs.com
- *
+ * @copyright  (c) 2009 - 2019 ValidWebs.com
+ * @package        mormvc - help.php
+ * @license
+ * @version
  * mormvc
- * home.php
+ * help.php
  */
 ?>
 
@@ -56,5 +58,7 @@ define( 'DB_SKIP_PATHS', array(
 ) );
 define( 'DB_TRIM_PATH', '/Users/jeff/www/mormvc/' );
 </code></pre>
-<p>Local relative links like cli/readme.md will be converted to ?doc=cli_readme</p>        </div>
+<p>Local relative links like cli/readme.md will be converted to ?doc=cli_readme</p>
+
+
 

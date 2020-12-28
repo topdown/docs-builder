@@ -18,6 +18,17 @@
 $keys = array_keys( $scheme );
 $i    = array_search( $key, $keys );
 
+$home = array_keys( $keys, 'home' );
+
+if ( in_array( 'home', $keys ) ) {
+	if ( isset( $home[0] ) ) {
+		// Remove the home slug.
+		unset( $keys[ $home[0] ] );
+		// Renumber the array
+		$keys = array_values( $keys );
+	}
+}
+
 // If we are on home we need the first key.
 if ( empty( $key ) ) {
 	$next_key = ( isset( $keys[0] ) ) ? $keys[0] : null;
@@ -55,11 +66,11 @@ if ( empty( $title ) ) {
 
 <div class="column is-9">
 	<div class="content is-medium body-content-container">
-		<div class="level">
+		<div class="level title-block">
 			<div class="level-left">
 				<div class="level-item">
 					<h3 class="title is-3">
-						<i class="is-small fas fa-code"></i> <?php echo $title; ?>
+						<i class="is-small fas fa-code"></i> <?php echo db_page_title( $title ); ?>
 					</h3>
 				</div>
 			</div>
@@ -72,7 +83,7 @@ if ( empty( $title ) ) {
 		</div>
 
 		<?php if ( isset( $scheme[ $file_slug ] ) && isset( $scheme[ $file_slug ]['origin'] ) ) { ?>
-			<div class="box">
+			<div class="box file-info-block">
 				<div class="level">
 					<div class="level-left">
 						<div class="level-item">
@@ -101,7 +112,6 @@ if ( empty( $title ) ) {
 		<div class="box body-content">
 
 			<?php
-			
 			if ( file_exists( $file ) ) {
 				include_once $file;
 			} else {

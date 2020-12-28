@@ -182,7 +182,7 @@ function cli_args_parser( $args ) {
 
 function cli_help() {
 	echo '
-Usage: php collect.php [command] [options] [-f] <file> [--] [args...]
+Usage: php build.php [command] [options] [-f] <file> [--] [args...]
    php cli.php find -h
    php cli.php debug "Is used as a appended command and outputs all args."
    php cli.php gen OR generate -h
@@ -271,7 +271,7 @@ function cli_generate_docs( $save = false ) {
 	if ( count( $results ) > 0 ) {
 
 		// Parsers
-		$Parsedown = new ParsedownExtra();
+		$Parsedown = new markdown_parser();
 		//$rst_parser = new Gregwar\RST\Parser;
 		//$rst_parser->getEnvironment()->getErrorManager()->abortOnError( false );
 
@@ -357,9 +357,12 @@ function cli_generate_docs( $save = false ) {
 					file_put_contents( DB_BUILD_PATH . '/templates/' . $directory . '/' . $file_name . '.php', $html );
 				}
 			} else {
-				$empty_info[ $slug ]['origin'] = trim( $key );
-				$empty_info[ $slug ]['slug']   = $slug;
-				$empty_info[ $slug ]['name']   = $name;
+				$empty_info[ $slug ]['origin']    = trim( $key );
+				$empty_info[ $slug ]['directory'] = $directory;
+				$empty_info[ $slug ]['file_name'] = $file_name;
+				$empty_info[ $slug ]['extension'] = $extension;
+				$empty_info[ $slug ]['slug']      = $slug;
+				$empty_info[ $slug ]['name']      = $name;
 
 				$empty_rows[] = array( $e ++, $key, $slug, '0.0B' );
 			}

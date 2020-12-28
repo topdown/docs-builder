@@ -24,7 +24,7 @@
 
 		<nav class="level">
 			<div class="level-item has-text-centered">
-				<a class="has-text-dark" target="_blank" style="padding-right: 10px;" href="//validwebs.com">ValidWebs </a> &copy;<?php echo date( 'Y' ) ?>
+				&copy;<?php echo date( 'Y' ) ?> &nbsp; <a class="has-text-dark" target="_blank" style="padding-right: 10px;" href="//validwebs.com">ValidWebs </a>
 			</div>
 
 
@@ -54,7 +54,7 @@
 	</div>
 
 </footer>
-<script src='src/prism.js'></script>
+<script src='src/js/prism.js'></script>
 <script>
   window.addEventListener( 'resize', () => {
 	  const divs = document.querySelectorAll( ".menu-list" );

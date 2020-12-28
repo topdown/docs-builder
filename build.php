@@ -36,6 +36,7 @@ if ( php_sapi_name() == 'cli' ) {
 
 	include_once 'functions.php';
 	include_once 'vendor/autoload.php';
+	include_once 'inc/markdown_parser.php';
 
 	echo "\nRunning setup/cleanup.\n";
 
