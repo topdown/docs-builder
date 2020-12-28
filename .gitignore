@@ -3,3 +3,4 @@ build
 config.php
 libs
 testing.php
+logs

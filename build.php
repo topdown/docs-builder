@@ -66,6 +66,7 @@ if ( php_sapi_name() == 'cli' ) {
 
 	fwrite( STDOUT, "Build Path: $full_path/ \n\n" );
 	cli_lines( 'Collection Starting' );
+
 	try {
 		cli_generate_docs( true );
 	} catch ( Exception $e ) {

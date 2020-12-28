@@ -261,7 +261,7 @@ function cli_nl() {
 function cli_generate_docs( $save = false ) {
 	$path    = realpath( '../') . '/' . SRC_DIR . '/';
 
-	print_r($path);
+	fwrite( STDOUT, "\n@Path: $path\n" );
 
 	$files   = array();
 	$results = cli_rsearch( $path, array( 'md', 'rst' ) );
@@ -369,7 +369,7 @@ function cli_generate_docs( $save = false ) {
 		}
 
 		if ( sizeof( $info ) ) {
-			cli_lines( 'Processed files.' );
+			cli_lines( "Processed files." );
 			foreach ( $info as $item ) {
 				echo '+ ' . $item['origin'] . "\n";
 			}
