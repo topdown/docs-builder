@@ -15,6 +15,16 @@
  * collect.php
  */
 
+if ( ! dir( 'logs' ) ) {
+	mkdir( 'logs' );
+}
+
+if ( ! file_exists( 'logs/error.log' ) ) {
+	touch(  'logs/error.log' );
+}
+// Log ajax errors in a seperate file.
+ini_set( "error_log", 'logs/error.log' );
+
 // Only command line
 if ( php_sapi_name() == 'cli' ) {
 

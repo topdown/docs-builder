@@ -259,7 +259,10 @@ function cli_nl() {
  * @throws Exception
  */
 function cli_generate_docs( $save = false ) {
-	$path    = realpath( '../' );
+	$path    = realpath( '../') . '/' . SRC_DIR . '/';
+
+	print_r($path);
+
 	$files   = array();
 	$results = cli_rsearch( $path, array( 'md', 'rst' ) );
 	//pretty_dump( $results );
@@ -371,15 +374,9 @@ function cli_generate_docs( $save = false ) {
 
 		if ( sizeof( $empty_rows ) ) {
 
-
-			//$tbl->addSeparator();
-			//$tbl->addRow( array( '', 'EMPTY FILES', 'EMPTY FILES', '' ) );
-			//$tbl->addSeparator();
-
 			cli_lines( 'Empty files.' );
 
 			foreach ( $empty_info as $empty ) {
-				//$tbl->addRow( $empty_row );
 				echo $empty['origin'] . "\n";
 			}
 		}
